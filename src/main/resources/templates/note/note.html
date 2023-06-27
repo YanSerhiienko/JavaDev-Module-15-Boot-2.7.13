@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes Management System</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div align="center" class="container">
+    <h1 th:text="${note == null} ? 'Add note' : 'Edit note'"></h1>
+
+    <hr>
+
+    <form action="/note/edit" method="POST">
+        <input id="title" name="title" th:value="${note == null ? '' : note.title}" class="form-control mb-4 col-4">
+        <textarea id="content" name="content" th:text="${note == null ? '' : note.content}" class="form-control mb-4 col-4">
+        </textarea>
+        <input type="hidden" name="id" th:value="${note == null ? -1 : note.id}"/>
+        <button type="submit" class="btn btn-info col-2">Save</button>
+    </form>
+
+    <hr>
+
+    <a th:href = "@{/note/list}"> Back to notes list</a>
+</div>
+</body>
+</html>
